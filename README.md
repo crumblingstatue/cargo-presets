@@ -35,3 +35,16 @@ default-features = false
 target = "wasm32-unknown-unknown"
 features = ["backend-eframe"]
 ```
+
+## Building and using the wrapper
+The cargo wrapper needs to know the location to the original cargo executable, in order
+to be able to run it.
+It reads this from the `PATH_TO_CARGO_EXEC` environment variable at build time,
+so you need to set this environment variable before building.
+
+To use it, first build the wrapper, then place it into your local bin folder as `cargo`.
+
+For example, I use it as `$HOME/bin/cargo`.
+
+`$HOME/bin` is in my `PATH` before `/usr/bin/`,
+so `$HOME/bin/cargo` will be used instead of `/usr/bin/cargo`.
