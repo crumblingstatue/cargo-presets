@@ -6,7 +6,7 @@
 # Summary
 [summary]: #summary
 
-Add presets to cargo, which are named sets of user defined build configurations for different purposes.
+Add presets to cargo, which are user defined build configurations stored in a file.
 
 # Motivation
 [motivation]: #motivation
