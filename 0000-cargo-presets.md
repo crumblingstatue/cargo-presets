@@ -32,7 +32,7 @@ Rust-analyzer has its own configuration options for target and features, which
 the user has to set independently of other tooling, or manual invocations of cargo.
 
 There are other examples of commonly used tooling, like [Bacon](https://github.com/Canop/bacon),
-which would also require passing the right cargo flags to.
+which also require passing the right cargo flags to.
 
 Conflicting cargo flags arising from forgetting to pass the exact right arguments for every tooling
 and cargo itself will invalidate the current build, and can be the source of a lot of unnecessary
