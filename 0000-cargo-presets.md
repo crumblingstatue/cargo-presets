@@ -203,6 +203,8 @@ Rust-analyzer could potentially support a similar dropdown menu as well in edito
 [unresolved-questions]: #unresolved-questions
 
 - Could this be a part of `.cargo/config.toml` instead of `.cargo/features.toml`? Would it make sense for it to be?
+- Should the feature be named **presets**? Would another name make more sense?
+  **build-presets** is slightly more verbose, but might convey the purpose of the feature better.
 
 # Future possibilities
 [future-possibilities]: #future-possibilities
