@@ -194,7 +194,7 @@ Rust-analyzer could potentially support a similar dropdown menu as well in edito
 # Unresolved questions
 [unresolved-questions]: #unresolved-questions
 
-- Could this be a part of `.cargo/config.toml`? Would it make sense for it to be?
+- Could this be a part of `.cargo/config.toml` instead of `.cargo/features.toml`? Would it make sense for it to be?
 
 # Future possibilities
 [future-possibilities]: #future-possibilities
