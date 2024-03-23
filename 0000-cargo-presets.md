@@ -164,10 +164,23 @@ There should be no impact to users who don't use the presets feature.
 # Rationale and alternatives
 [rationale-and-alternatives]: #rationale-and-alternatives
 
-- Why is this design the best in the space of possible designs?
-- What other designs have been considered and what is the rationale for not choosing them?
-- What is the impact of not doing this?
-- If this is a language proposal, could this be done in a library or macro instead? Does the proposed change make Rust code easier or harder to read, understand, and maintain?
+When I initially brought up this feature suggestion, one of the responses was that this feature
+might have a better place in a higher level tool on top of cargo, instead of cargo itself.
+However, such a higher level tool doesn't exist at this time, and it's unknown if it will
+ever exist in such a way that integrates with tooling that currently invoke cargo (like Rust-analyzer).
+Without being able to integrate with tooling, such a feature would lose most of its advantages, because
+the user would still have to configure all their tooling manually, instead of being able to define
+their preferred configuration once, centrally, and have all tooling automatically use it.
+
+Even if such a higher level tooling existed in the future, it could write to the presets file, and
+existing tooling wouldn't have to do anything special to invoke cargo with the right flags.
+
+Another alternative is to implement this as a cargo wrapper (see <https://github.com/crumblingstatue/cargo-presets/>), which
+is a drop-in replacement for cargo, intercepting its command line flags, and overwriting them.
+While possible, it's unreasonable to expect users who want this feature to install and configure a cargo
+wrapper, which needs to override the original cargo executable to be usable.
+Cargo wrappers are also not composable, because you can only reasonably use one cargo wrapper, at least
+without special careful setup of an invocation chain, which a regular user can't be expected to do.
 
 # Prior art
 [prior-art]: #prior-art
