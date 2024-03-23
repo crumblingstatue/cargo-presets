@@ -28,7 +28,7 @@ Here is an example of what those flags might look like:
     - `--features=alternate-backend`
 
 These flags also have to be set independently for every piece of tooling, most notably Rust-analyzer.
-Rust-analyzer for example has its own configuration options for target and features, which
+Rust-analyzer has its own configuration options for target and features, which
 the user has to set independently of other tooling, or manual invocations of cargo.
 
 There are other examples of commonly used tooling, like [Bacon](https://github.com/Canop/bacon),
