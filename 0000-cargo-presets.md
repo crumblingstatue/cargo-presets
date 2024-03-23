@@ -54,9 +54,73 @@ This would:
 [guide-level-explanation]: #guide-level-explanation
 
 Presets are a feature of Cargo that allow defining a set of build configurations for a project.
-For example, a project might have a web version, or different backends.
-Without presets, one would have to pass the right flags to Cargo for each invocation.
-An example might be `cargo build --default-features=false --features=web,specific,features` for the web version.
+
+What is a build configuration?
+
+Let's use an application that has both *desktop* and *web* versions as an example.
+
+Let's also say that the desktop version also has two different windowing backends, expressed
+using [features](https://doc.rust-lang.org/cargo/reference/features.html):
+`window-backend-1` (default) and `window-backend-2`.
+Let's presume that despite `window-backend-1` being the default, `window-backend-2` works
+better on your system, so you would like using it as you are working on the project.
+
+The low level way to do this is to pass `--no-default-features --features=window-backend-2` to
+cargo every time. However, this can be difficult to remember, especially for more
+complex feature configurations.
+
+The solution is to define a **preset** for your backend.
+
+Create a TOML file named `.cargo/presets.toml` in your project's root folder:
+```toml
+[preset.mybackend]
+default-features = false
+features = ["window-backend-2"]
+```
+
+Now you can simply pass `--preset mybackend` to cargo when you want to use your preferred backend.
+
+Let's also add the web backend:
+```toml
+[preset.mybackend]
+default-features = false
+features = ["window-backend-2"]
+
+[preset.web]
+# You can also set the target
+target = "wasm32-unknown-unknown"
+default-features = false
+features = ["web-backend"]
+```
+
+Similarly, you can pass `--preset web` to cargo when you want to build the web version.
+
+While this is more convenient and less error-prone than having to pass the exact flags to cargo every time,
+you still have to pass which preset you want to build to cargo every time.
+And what about tools like Rust-analyzer? Does the preset to use have to be configured separately
+for each tooling?
+
+The real power of presets lie in the fact that you can set a default preset:
+
+```toml
+# Now `mybackend` is the default preset
+default = "mybackend"
+
+[preset.mybackend]
+default-features = false
+features = ["window-backend-2"]
+
+[preset.web]
+# You can also set the target
+target = "wasm32-unknown-unknown"
+default-features = false
+features = ["web-backend"]
+```
+
+When there is a default preset set, `cargo` will automatically use the build configuration defined
+by that preset.
+This works for all tooling that invokes `cargo`, including Rust-analyzer, which queries cargo
+for the build configuration.
 
 # Reference-level explanation
 [reference-level-explanation]: #reference-level-explanation
