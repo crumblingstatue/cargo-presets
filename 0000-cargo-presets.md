@@ -125,13 +125,27 @@ for the build configuration.
 # Reference-level explanation
 [reference-level-explanation]: #reference-level-explanation
 
-This is the technical portion of the RFC. Explain the design in sufficient detail that:
+Presets are essentially sets of build options that cargo uses in absence of a command line flag
+that sets that build option.
 
-- Its interaction with other features is clear.
-- It is reasonably clear how the feature would be implemented.
-- Corner cases are dissected by example.
+If a command line flag (`--target`, `--features`, `--no-default-features`) is present, it overrides
+the defaults defined by the preset.
 
-The section should return to the examples given in the previous section, and explain more fully how the detailed proposal makes those examples work.
+Presets are read from `.cargo/presets.toml`, similarly to how `.cargo/config.toml` is handled.
+Always the most specific `.cargo/presets.toml` is used. If a `.cargo/presets.toml` file is found,
+no further attempts are made to read and merge other `.cargo/presets` files.
+
+Once found, the presets file is read as a TOML document, and parsed into a data structure that
+stores fallback build options to use in absence of corresponding command line flags.
+
+For example if `--target` or `--features` is not defined, cargo will use their corresponding fallbacks.
+Any command line flag completely overrides its corresponding fallback. There is no attempt to merge a command line flag
+and its corresponding fallback in any way.
+
+However, a command line flag only overrides its corresponding fallback.
+For example, if a preset defines both `target` and `features`, passing a different
+`--target` flag will only override the `target` fallback. The `features` fallback will still be utilized,
+unless there is also a `--features` flag present, which would override it.
 
 # Drawbacks
 [drawbacks]: #drawbacks
