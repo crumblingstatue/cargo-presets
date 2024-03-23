@@ -150,8 +150,17 @@ unless there is also a `--features` flag present, which would override it.
 # Drawbacks
 [drawbacks]: #drawbacks
 
-This makes cargo slightly more complex, and has to read an additional file.
+- This makes cargo slightly more complex.
 
+    It should be a relatively simple addition though.
+    I don't expect the implementation to add over 1000 lines.
+
+- Cargo has to read an additional file.
+
+    However, this shouldn't have a significant performance impact, as it's only done once,
+    during cargo's initialization phase.
+
+There should be no impact to users who don't use the presets feature.
 # Rationale and alternatives
 [rationale-and-alternatives]: #rationale-and-alternatives
 
