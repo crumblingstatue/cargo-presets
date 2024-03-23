@@ -136,17 +136,27 @@ Presets are read from `.cargo/presets.toml`, similarly to how `.cargo/config.tom
 Always the most specific `.cargo/presets.toml` is used. If a `.cargo/presets.toml` file is found,
 no further attempts are made to read and merge other `.cargo/presets` files.
 
-Once found, the presets file is read as a TOML document, and parsed into a data structure that
-stores fallback build options to use in absence of corresponding command line flags.
+Once found, the presets file is read as a TOML document, and is handled in the following way:
+1. Determine the preset to use:
+    - If the file contains a `default` field, that preset will be used as default.
+    - If a `--preset <preset_name>` flag is given to cargo, it will attempt to use that preset.
+      If no preset with that name exists, cargo will stop with an error message indicating
+      that the preset given in the argument was not found.
 
-For example if `--target` or `--features` is not defined, cargo will use their corresponding fallbacks.
-Any command line flag completely overrides its corresponding fallback. There is no attempt to merge a command line flag
-and its corresponding fallback in any way.
+      If there is both a `default` preset, and a `--preset` flag, `--preset` overrides the default.
+    - If no preset to use was determined, cargo will proceed as normally.
+2. If a preset was selected for use, then cargo will store the preset's build options
+   as a fallback to use in absence of corresponding command line flags:
 
-However, a command line flag only overrides its corresponding fallback.
-For example, if a preset defines both `target` and `features`, passing a different
-`--target` flag will only override the `target` fallback. The `features` fallback will still be utilized,
-unless there is also a `--features` flag present, which would override it.
+    For example in the absence of `--target` or `--features` flags, cargo will use their corresponding fallbacks.
+
+    Any command line flag completely overrides its corresponding fallback. There is no attempt to merge a command line flag
+    and its corresponding fallback in any way.
+
+    However, a command line flag only overrides its corresponding fallback.
+    For example, if a preset defines both `target` and `features`, passing a different
+    `--target` flag will only override the `target` fallback. The `features` fallback will still be utilized,
+    unless there is also a `--features` flag present, which would override it.
 
 # Drawbacks
 [drawbacks]: #drawbacks
