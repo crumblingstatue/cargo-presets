@@ -186,7 +186,7 @@ without special careful setup of an invocation chain, which a regular user can't
 [prior-art]: #prior-art
 
 Build systems that have a configure step (for example CMake), allow generating different configurations,
-which can be independently build without having to respecify all the options.
+which can be independently built without having to respecify all the options.
 IDEs can even collect information about these configuration, and present a dropdown menu with
 selectable configurations. Qt Creator for example supports this using CMake.
 Rust-analyzer could potentially support a similar dropdown menu as well in editors that allow such a thing.
