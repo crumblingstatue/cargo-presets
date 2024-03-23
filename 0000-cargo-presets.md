@@ -131,7 +131,7 @@ that sets that build option.
 
 Presets are read from `.cargo/presets.toml`, similarly to how `.cargo/config.toml` is handled.
 Always the most specific `.cargo/presets.toml` is used. If a `.cargo/presets.toml` file is found,
-no further attempts are made to read and merge other `.cargo/presets` files.
+no further attempts are made to read and merge `.cargo/presets` files higher up the directory hierarchy.
 
 Once found, the presets file is read as a TOML document, and is handled in the following way:
 1. Determine the preset to use:
