@@ -42,7 +42,7 @@ If there was a way to define a set of build configurations (**presets**), the us
 have to remember the name of the preset, instead of having to remember all the right flags.
 
 Moreover, if there was a way to set a default preset, then cargo could use that information to always
-include the flags defined by the preset in its invocations.
+include the flags defined by the preset in its invocations (unless a command line flag overrides it).
 This would:
 - Synchronize tooling that invokes cargo (bacon, rust-analyzer):
     They would just need to invoke cargo normally, without having to pass any additional arguments
