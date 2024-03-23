@@ -129,9 +129,6 @@ for the build configuration.
 Presets are essentially sets of build options that cargo uses in absence of a command line flag
 that sets that build option.
 
-If a command line flag (`--target`, `--features`, `--no-default-features`) is present, it overrides
-the defaults defined by the preset.
-
 Presets are read from `.cargo/presets.toml`, similarly to how `.cargo/config.toml` is handled.
 Always the most specific `.cargo/presets.toml` is used. If a `.cargo/presets.toml` file is found,
 no further attempts are made to read and merge other `.cargo/presets` files.
