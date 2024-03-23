@@ -209,4 +209,5 @@ Rust-analyzer could potentially support a similar dropdown menu as well in edito
 # Future possibilities
 [future-possibilities]: #future-possibilities
 
-- Allow more options than just `default-features`, `features`, and `target` (any good candidates?)
+- Allow more options than just `default-features`, `features`, and `target`
+    - Setting the profile (`dev`/`release`) might be desirable.
