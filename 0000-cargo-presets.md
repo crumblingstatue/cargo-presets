@@ -12,7 +12,7 @@ Add presets to cargo, which are user defined build configurations stored in a fi
 [motivation]: #motivation
 
 Projects often have different build configurations for different purposes.
-For example a project might have different backends, or it might be buildable for the web
+For example an application might have different backends, or it might be buildable for the web
 using WebAssembly.
 
 Currently, if someone wants to build such a specific build configuration, they always have to provide
