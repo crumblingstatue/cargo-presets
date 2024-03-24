@@ -190,6 +190,19 @@ wrapper, which needs to override the original cargo executable to be usable.
 Cargo wrappers are also not composable, because you can only reasonably use one cargo wrapper, at least
 without special careful setup of an invocation chain, which a regular user can't be expected to do.
 
+## Suggested alternatives that don't solve the problem
+- aliases, xtasks, native task support
+
+    These don't integrate with tooling like Rust-analyzer, bacon, etc.
+    Solving tooling integration is a major point of the RFC.
+
+- richer profiles
+
+    Profiles live in `Cargo.toml`, which is a version tracked file.
+    The user's preferred build configurations don't belong there.
+    They are specific to the user, not the project.
+    Moreover, there is no way to set a default profile, so tooling would know which to use.
+
 # Prior art
 [prior-art]: #prior-art
 
