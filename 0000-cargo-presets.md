@@ -172,6 +172,15 @@ There should be no impact to users who don't use the presets feature.
 # Rationale and alternatives
 [rationale-and-alternatives]: #rationale-and-alternatives
 
+## ✅ A file that cargo simply reads arguments from
+This is a much simpler feature that a 3rd party presets-like system could be built on top of.
+The idea is simply to have a file that cargo looks for on startup, and read arguments from it.
+Command line arguments would override arguments of the same type read from the file.
+
+This allows a 3rd party presets implementation that meets all the criteria of this RFC.
+
+## Other alternatives
+
 When I initially brought up this feature suggestion, one of the responses was that this feature
 might have a better place in a higher level tool on top of cargo, instead of cargo itself.
 However, such a higher level tool doesn't exist at this time, and it's unknown if it will
@@ -190,7 +199,7 @@ wrapper, which needs to override the original cargo executable to be usable.
 Cargo wrappers are also not composable, because you can only reasonably use one cargo wrapper, at least
 without special careful setup of an invocation chain, which a regular user can't be expected to do.
 
-## Suggested alternatives that don't solve the problem
+## ❌ Suggested alternatives that don't solve the problem
 - aliases, xtasks, native task support
 
     These don't integrate with tooling like Rust-analyzer, bacon, etc.
